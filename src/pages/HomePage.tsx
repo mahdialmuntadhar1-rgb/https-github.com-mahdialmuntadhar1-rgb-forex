@@ -261,7 +261,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                       <span>Sup: <strong className="text-emerald-400">{analysis.keyLevels.support1}</strong></span>
                       <span>Res: <strong className="text-rose-400">{analysis.keyLevels.resistance1}</strong></span>
                     </div>
-                    <span className="text-blue-400 font-semibold group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                    <span className="text-blue-400 font-semibold group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform flex items-center gap-1">
                       {t('analysis.readAnalysis')} <ArrowRight size={13} className={direction === 'rtl' ? 'rotate-180' : ''} />
                     </span>
                   </div>
@@ -448,7 +448,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     </h5>
                     <p className="text-xs text-slate-400 line-clamp-1">{crs.description}</p>
                   </div>
-                  <div className="text-right shrink-0 text-xs font-mono text-slate-400">
+                  <div className="text-end shrink-0 text-xs font-mono text-slate-400">
                     <div>{crs.lessonsCount} lessons</div>
                     <div className="text-slate-500">{crs.duration}</div>
                   </div>
@@ -491,10 +491,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                     />
                     <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
                       <div className="w-7 h-7 rounded-full bg-rose-600/90 text-white flex items-center justify-center shadow">
-                        <Play size={12} className="ml-0.5" />
+                        <Play size={12} className="ms-0.5" />
                       </div>
                     </div>
-                    <span className="absolute bottom-1 right-1 px-1 py-0.2 rounded bg-black/80 text-[10px] font-mono text-white">
+                    <span className="absolute bottom-1 end-1 px-1 py-0.2 rounded bg-black/80 text-[10px] font-mono text-white">
                       {vid.duration}
                     </span>
                   </div>
@@ -521,14 +521,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left space-y-4">
+            <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-start space-y-4">
               <div className="relative">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
                   alt="Karam Al-Rawi"
                   className="w-36 h-36 rounded-2xl object-cover ring-2 ring-blue-500/40 shadow-xl"
                 />
-                <span className="absolute -bottom-2 -right-2 px-2 py-0.5 rounded-md bg-blue-600 text-[10px] font-mono font-bold text-white shadow">
+                <span className="absolute -bottom-2 -end-2 px-2 py-0.5 rounded-md bg-blue-600 text-[10px] font-mono font-bold text-white shadow">
                   CMT Level III
                 </span>
               </div>

@@ -3,7 +3,7 @@ import { useTranslation } from '../context/LanguageContext';
 import { authService } from '../services/authApi';
 import { Language } from '../types';
 import { VerticalLogo } from '../components/brand/VerticalLogo';
-import { Mail, Phone, Lock, ArrowRight, Globe, Shield, CheckCircle } from 'lucide-react';
+import { Mail, Phone, Lock, ArrowRight, ArrowLeft, Globe, Shield, CheckCircle } from 'lucide-react';
 
 interface LoginPageProps {
   onNavigate: (path: string) => void;
@@ -21,7 +21,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!identifier || !password) {
-      setError('Please fill in all required fields.');
+      setError(language === 'ar' ? 'يرجى ملء جميع الحقول المطلوبة.' : language === 'ckb' ? 'تکایە هەموو خانە پێویستەکان پڕبکەرەوە.' : 'Please fill in all required fields.');
       return;
     }
     setLoading(true);
@@ -30,7 +30,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
       await authService.login(identifier, password);
       onNavigate('/app/dashboard');
     } catch {
-      setError('Invalid login credentials. Please verify your details.');
+      setError(language === 'ar' ? 'بيانات الاعتماد غير صالحة. يرجى التحقق من صحتها.' : language === 'ckb' ? 'زانیاری چوونەژوورەوە هەڵەیە. تکایە دڵنیابەرەوە.' : 'Invalid login credentials. Please verify your details.');
     } finally {
       setLoading(false);
     }
@@ -65,7 +65,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           onClick={() => onNavigate('/')}
           className="text-xs text-slate-400 hover:text-white transition flex items-center gap-1 font-mono cursor-pointer"
         >
-          &larr; Back to Platform
+          <ArrowLeft size={14} className={direction === 'rtl' ? 'rotate-180' : ''} />
+          <span>{language === 'ar' ? 'العودة للمنصة' : language === 'ckb' ? 'گەڕانەوە بۆ پلاتفۆرم' : 'Back to Platform'}</span>
         </button>
 
         <div className="flex items-center gap-1.5 bg-[#0F2236] border border-[#1E3A57] px-2.5 py-1 rounded-full text-xs font-mono text-slate-300">
@@ -102,10 +103,10 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           </div>
           <div className="pt-2">
             <h1 className="text-xl font-bold text-white tracking-tight">
-              Sign In to Your Terminal
+              {t('nav.login')}
             </h1>
             <p className="text-xs text-slate-400 mt-1">
-              Access real-time interbank research, VIP setups & academy
+              {language === 'ar' ? 'الوصول إلى أبحاث الأسواق وتوصيات التداول والأكاديمية' : language === 'ckb' ? 'دەستڕاگەیشتن بە شیکاری بازاڕەکان، پلانەکانی بازرگانی و ئەکادیمیا' : 'Access real-time interbank research, VIP setups & academy'}
             </p>
           </div>
         </div>
@@ -119,7 +120,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               loginMethod === 'email' ? 'bg-[#2163CC] text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Mail size={14} /> Email Address
+            <Mail size={14} /> {language === 'ar' ? 'البريد الإلكتروني' : language === 'ckb' ? 'ئیمەیڵ' : 'Email Address'}
           </button>
           <button
             type="button"
@@ -128,7 +129,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               loginMethod === 'phone' ? 'bg-[#2163CC] text-white shadow-md' : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Phone size={14} /> Phone Number
+            <Phone size={14} /> {language === 'ar' ? 'رقم الهاتف' : language === 'ckb' ? 'ژمارەی تەلەفۆن' : 'Phone Number'}
           </button>
         </div>
 
@@ -138,11 +139,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
           </div>
         )}
 
-        {/* Login Form with White/Light Inputs & Charcoal Text as specified */}
+        {/* Login Form with White/Light Inputs & Charcoal Text */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-1.5">
             <label className="block text-xs font-semibold text-slate-300">
-              {loginMethod === 'email' ? 'Institutional / Personal Email' : 'Phone Number (with Country Code)'}
+              {loginMethod === 'email' 
+                ? (language === 'ar' ? 'البريد الإلكتروني المؤسسي / الشخصي' : language === 'ckb' ? 'ئیمەیڵی فەرمی / کەسی' : 'Institutional / Personal Email')
+                : (language === 'ar' ? 'رقم الهاتف (مع رمز الدولة)' : language === 'ckb' ? 'ژمارەی مۆبایل (لەگەڵ کۆدی وڵات)' : 'Phone Number (with Country Code)')}
             </label>
             <div className="relative">
               <input
@@ -151,9 +154,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
                 value={identifier}
                 onChange={e => setIdentifier(e.target.value)}
                 placeholder={loginMethod === 'email' ? 'trader@profitpoint.com' : '+964 750 000 0000'}
-                className="w-full px-4 py-3 rounded-xl bg-white text-[#333333] placeholder-slate-400 font-medium text-sm border-2 border-transparent focus:border-[#2163CC] focus:outline-none shadow-inner transition"
+                className="w-full px-4 py-3 rounded-xl bg-white text-[#333333] placeholder-slate-400 font-medium text-sm border-2 border-transparent focus:border-[#2163CC] focus:outline-none shadow-inner transition text-start"
               />
-              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+              <div className="absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
                 {loginMethod === 'email' ? <Mail size={16} /> : <Phone size={16} />}
               </div>
             </div>
@@ -161,13 +164,15 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
           <div className="space-y-1.5">
             <div className="flex items-center justify-between">
-              <label className="block text-xs font-semibold text-slate-300">Password</label>
+              <label className="block text-xs font-semibold text-slate-300">
+                {language === 'ar' ? 'كلمة المرور' : language === 'ckb' ? 'وشەی نهێنی' : 'Password'}
+              </label>
               <button
                 type="button"
                 onClick={() => alert('Password reset link sent to your registered email.')}
                 className="text-xs text-[#2163CC] hover:underline cursor-pointer"
               >
-                Forgot Password?
+                {language === 'ar' ? 'نسيت كلمة المرور؟' : language === 'ckb' ? 'وشەی نهێنیت لەبیرچووە؟' : 'Forgot Password?'}
               </button>
             </div>
             <div className="relative">
@@ -177,9 +182,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
                 value={password}
                 onChange={e => setPassword(e.target.value)}
                 placeholder="••••••••••••"
-                className="w-full px-4 py-3 rounded-xl bg-white text-[#333333] placeholder-slate-400 font-medium text-sm border-2 border-transparent focus:border-[#2163CC] focus:outline-none shadow-inner transition"
+                className="w-full px-4 py-3 rounded-xl bg-white text-[#333333] placeholder-slate-400 font-medium text-sm border-2 border-transparent focus:border-[#2163CC] focus:outline-none shadow-inner transition text-start"
               />
-              <div className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+              <div className="absolute end-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
                 <Lock size={16} />
               </div>
             </div>
@@ -193,9 +198,9 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
                 onChange={e => setRememberMe(e.target.checked)}
                 className="rounded border-[#1E3A57] bg-[#0B1C2D] text-[#2163CC] focus:ring-[#2163CC]"
               />
-              Keep me signed in
+              <span>{language === 'ar' ? 'تذكر بيانات الدخول' : language === 'ckb' ? 'بمپارێزە بە چوونەژوورەوە' : 'Keep me signed in'}</span>
             </label>
-            <span className="text-slate-400 flex items-center gap-1">
+            <span className="text-slate-400 flex items-center gap-1 font-mono text-[11px]">
               <Shield size={12} className="text-[#2163CC]" /> 256-bit SSL
             </span>
           </div>
@@ -210,8 +215,8 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
               <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
             ) : (
               <>
-                <span>Sign In to Profit Point</span>
-                <ArrowRight size={16} />
+                <span>{language === 'ar' ? 'تسجيل الدخول إلى بروفيت بوينت' : language === 'ckb' ? 'چوونەژوورەوە بۆ پڕۆفیت پۆینت' : 'Sign In to Profit Point'}</span>
+                <ArrowRight size={16} className={direction === 'rtl' ? 'rotate-180' : ''} />
               </>
             )}
           </button>
@@ -220,7 +225,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
         {/* Demo Fast Access Buttons for seamless testing */}
         <div className="pt-2 border-t border-[#1E3A57]/80">
           <div className="text-[11px] text-slate-400 font-mono text-center mb-2">
-            Instant Demo Credentials:
+            {language === 'ar' ? 'بيانات الحسابات التجريبية السريعة:' : language === 'ckb' ? 'هەژماری تاقیکاری خێرا:' : 'Instant Demo Credentials:'}
           </div>
           <div className="grid grid-cols-2 gap-2">
             <button
@@ -242,13 +247,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigate }) => {
 
         {/* Register Redirection */}
         <div className="text-center text-xs text-slate-400 pt-1">
-          Don't have a Profit Point account?{' '}
+          {language === 'ar' ? 'ليس لديك حساب بعد؟' : language === 'ckb' ? 'هێشتا هەژمارت نییە؟' : "Don't have a Profit Point account?"}{' '}
           <button
             type="button"
             onClick={() => onNavigate('/register')}
             className="text-[#2163CC] font-bold hover:underline cursor-pointer"
           >
-            Register Here &rarr;
+            {language === 'ar' ? 'أنشئ حسابك الآن ←' : language === 'ckb' ? 'هەژمار دروستبکە ←' : 'Register Here →'}
           </button>
         </div>
       </div>

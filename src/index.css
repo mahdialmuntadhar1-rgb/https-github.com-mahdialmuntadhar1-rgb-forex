@@ -44,7 +44,51 @@
 body {
   background-color: #0B1C2D;
   color: #FFFFFF;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* RTL Typography & Direction Settings (Arabic & Sorani Kurdish) */
+[dir="rtl"],
+html[dir="rtl"] body {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  text-align: right;
+  letter-spacing: normal;
+}
+
+/* Financial symbols, pairs, and numbers: keep standard LTR representation */
+.font-mono,
+[dir="rtl"] .font-mono,
+.symbol-ticker,
+[dir="rtl"] .symbol-ticker,
+.financial-num,
+[dir="rtl"] .financial-num {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+  display: inline-block;
+}
+
+/* Explicit protection: Profit Point Logo must NEVER be mirrored or deformed in RTL */
+.profit-point-logo,
+[dir="rtl"] .profit-point-logo,
+svg.brand-mark,
+[dir="rtl"] svg.brand-mark {
+  direction: ltr !important;
+  transform: none !important;
+  unicode-bidi: normal !important;
+}
+
+/* Financial Canvas Charts: Preserve chronological LTR axis */
+.financial-chart-container,
+[dir="rtl"] .financial-chart-container {
+  direction: ltr !important;
+}
+
+/* RTL Directional Arrow Helper */
+[dir="rtl"] .rtl-flip {
+  transform: scaleX(-1);
 }
 
 /* Custom Scrollbar styled for Deep Navy Terminal */
