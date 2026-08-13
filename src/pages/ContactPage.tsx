@@ -235,37 +235,37 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate, defaultSub
               </a>
 
               <a
-                href="https://t.me/karam_fx_intelligence"
+                href="https://t.me/profitpoint_official"
                 target="_blank"
                 rel="noreferrer"
-                className="p-3.5 rounded-xl bg-blue-950/20 border border-blue-500/30 hover:border-blue-500/60 transition flex items-center justify-between group"
+                className="p-3.5 rounded-xl bg-[#0F2236] border border-[#1E3A57] hover:border-[#2163CC] transition flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-[#2163CC]/20 text-[#2163CC] flex items-center justify-center">
                     <Send size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-100">Official Telegram Channel</div>
-                    <div className="text-[11px] font-mono text-blue-400">@karam_fx_intelligence</div>
+                    <div className="text-xs font-bold text-white">Official Telegram Channel</div>
+                    <div className="text-[11px] font-mono text-[#2163CC]">@profitpoint_official</div>
                   </div>
                 </div>
-                <ArrowRight size={14} className="text-blue-400 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={14} className="text-[#2163CC] group-hover:translate-x-1 transition-transform" />
               </a>
 
               <a
-                href="mailto:strategist@karam-fx.com"
-                className="p-3.5 rounded-xl bg-purple-950/20 border border-purple-500/30 hover:border-purple-500/60 transition flex items-center justify-between group"
+                href="mailto:contact@profitpoint.pro"
+                className="p-3.5 rounded-xl bg-[#0F2236] border border-[#1E3A57] hover:border-[#2163CC] transition flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg bg-purple-500/20 text-purple-400 flex items-center justify-center">
+                  <div className="w-9 h-9 rounded-lg bg-[#2163CC]/20 text-[#2163CC] flex items-center justify-center">
                     <Mail size={18} />
                   </div>
                   <div>
-                    <div className="text-xs font-bold text-slate-100">Institutional Email Inquiries</div>
-                    <div className="text-[11px] font-mono text-purple-400">desk@karam-fx.com</div>
+                    <div className="text-xs font-bold text-white">Institutional Email Inquiries</div>
+                    <div className="text-[11px] font-mono text-slate-300">contact@profitpoint.pro</div>
                   </div>
                 </div>
-                <ArrowRight size={14} className="text-purple-400 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight size={14} className="text-[#2163CC] group-hover:translate-x-1 transition-transform" />
               </a>
             </div>
           </div>

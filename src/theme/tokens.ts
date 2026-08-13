@@ -1,26 +1,40 @@
 export const designTokens = {
   colors: {
+    // Official Profit Point Palette
+    brand: {
+      primary: '#2163CC', // Primary Profit Blue (RGB: 33, 99, 204)
+      primaryHover: '#1855B5',
+      primaryLight: 'rgba(33, 99, 204, 0.12)',
+      navy: '#0B1C2D', // Deep Navy (RGB: 11, 28, 45)
+      navySurface: '#0F2236',
+      navyCard: '#132A42',
+      navyBorder: '#1E3A57',
+      charcoal: '#333333', // Charcoal (RGB: 51, 51, 51)
+      white: '#FFFFFF', // Pure White (RGB: 255, 255, 255)
+    },
     // Canvas & Terminals
     background: {
-      primary: '#0B0F17', // Deep obsidian slate
-      secondary: '#111827', // Dark navy charcoal
-      tertiary: '#1A2234', // Elevated card surface
-      elevated: '#202B42', // Popovers & Modals
-      subtle: '#141D2E', // Subtle inset panels
+      primary: '#0B1C2D', // Deep Navy
+      secondary: '#0F2236', // Navy surface
+      tertiary: '#132A42', // Elevated card surface
+      elevated: '#183452', // Popovers & Modals
+      subtle: '#0E2033', // Inset panels
+      light: '#FFFFFF', // Light theme surfaces
     },
     border: {
-      default: '#1E293B',
-      subtle: '#152136',
-      accent: '#334155',
-      highlight: '#3B82F6',
+      default: '#1E3A57',
+      subtle: '#152C42',
+      accent: '#2163CC',
+      highlight: '#2163CC',
     },
     text: {
-      primary: '#F8FAFC',
+      primary: '#FFFFFF',
       secondary: '#94A3B8',
       muted: '#64748B',
-      inverse: '#0B0F17',
+      dark: '#333333',
+      darkSecondary: '#555555',
     },
-    // Institutional Financial Status Badges
+    // Financial Market Status Badges (Strictly for quotes & market data, not brand)
     bullish: {
       primary: '#10B981', // Emerald 500
       glow: 'rgba(16, 185, 129, 0.15)',
@@ -38,25 +52,12 @@ export const designTokens = {
       glow: 'rgba(245, 158, 11, 0.15)',
       subtle: '#78350F',
       text: '#FBBF24',
-    },
-    gold: {
-      primary: '#EAB308',
-      glow: 'rgba(234, 179, 8, 0.2)',
-      light: '#FEF08A',
-      dark: '#854D0E',
-    },
-    brand: {
-      primary: '#2563EB', // Sapphire Blue
-      secondary: '#3B82F6',
-      dark: '#1D4ED8',
-      light: '#60A5FA',
-      accent: '#06B6D4', // Cyan accent for terminal metrics
     }
   },
   typography: {
     fontFamily: {
-      sans: "'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif",
-      arabic: "'Tajawal', 'Cairo', 'Vazirmatn', system-ui, sans-serif",
+      sans: "'Montserrat', 'Inter', system-ui, -apple-system, sans-serif",
+      arabic: "'IBM Plex Sans Arabic', 'Cairo', 'Tajawal', system-ui, sans-serif",
       mono: "'JetBrains Mono', 'Fira Code', monospace",
     }
   },
@@ -70,6 +71,6 @@ export const designTokens = {
   shadows: {
     card: '0 4px 20px -2px rgba(0, 0, 0, 0.35)',
     elevated: '0 10px 30px -4px rgba(0, 0, 0, 0.5)',
-    glow: '0 0 20px rgba(37, 99, 235, 0.2)',
+    glow: '0 0 20px rgba(33, 99, 204, 0.2)',
   }
 };

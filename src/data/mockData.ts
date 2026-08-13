@@ -16,9 +16,9 @@ import {
 
 export const initialTraderProfile: TraderProfile = {
   name: 'Karam Al-Rawi',
-  title: 'Senior Macro & FX Strategist',
-  subtitle: 'Chartered Market Technician (CMT) & Former Institutional Flow Analyst',
-  bio: 'With over 12 years of hands-on institutional FX & commodities trading experience, Karam combines order flow mechanics, central bank monetary policy analysis, and strict risk-reward execution frameworks. Committed to elevating trader literacy and transparency across global and Middle Eastern markets.',
+  title: 'Head Analyst & Founder, Profit Point',
+  subtitle: 'Chartered Market Technician (CMT) & Institutional Market Strategist',
+  bio: 'With over 12 years of hands-on institutional FX & commodities trading experience, Karam founded Profit Point to bring transparent order flow mechanics, central bank monetary policy research, and disciplined risk frameworks to traders globally.',
   experienceYears: 12,
   specialization: [
     'Institutional Order Flow',
@@ -54,11 +54,11 @@ export const initialTraderProfile: TraderProfile = {
     'Macroeconomic Policy & Liquidity Analysis (London)'
   ],
   socialLinks: [
-    { platform: 'telegram', url: 'https://t.me/karam_fx_intelligence', handle: '@karam_fx_intelligence' },
+    { platform: 'telegram', url: 'https://t.me/profitpoint_official', handle: '@profitpoint_official' },
     { platform: 'whatsapp', url: 'https://wa.me/447700900077', handle: '+44 7700 900077' },
-    { platform: 'youtube', url: 'https://youtube.com/@karam_fx', handle: 'Karam FX Intelligence' },
-    { platform: 'x', url: 'https://x.com/karam_fx', handle: '@karam_macro' },
-    { platform: 'instagram', url: 'https://instagram.com/karam_trader', handle: '@karam_trader' }
+    { platform: 'youtube', url: 'https://youtube.com/@profitpoint_fx', handle: 'Profit Point Market Intelligence' },
+    { platform: 'x', url: 'https://x.com/profitpoint_fx', handle: '@profitpoint_fx' },
+    { platform: 'instagram', url: 'https://instagram.com/profitpoint_fx', handle: '@profitpoint_fx' }
   ],
   avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80',
   bannerUrl: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1600&q=80'
@@ -1017,16 +1017,16 @@ export const initialServices: ServiceItem[] = [
 ];
 
 export const initialSiteContent: SiteContentConfig = {
-  brandName: 'Karam FX Intelligence',
+  brandName: 'Profit Point',
   heroHeadline: 'Understand the Market. Trade With Knowledge.',
-  heroSubtitle: 'Real-time quotes, institutional macro analysis, disciplined setups and systematic educational insights from professional Forex traders.',
+  heroSubtitle: 'Real-time institutional FX & Gold analytics, systematic technical levels, disciplined risk framework, and continuous trader education.',
   heroPrimaryCta: 'Explore Live Markets',
-  heroSecondaryCta: 'Contact the Trader',
+  heroSecondaryCta: 'Contact Profit Point Desk',
   traderName: 'Karam Al-Rawi',
-  traderTitle: 'Senior Macro & FX Strategist',
+  traderTitle: 'Head Analyst & Founder, Profit Point',
   traderBio: '12+ years of institutional FX & Gold market analysis. Focus on order flow, macro central bank policy, and capital preservation.',
   whatsappNumber: '+44 7700 900077',
-  telegramHandle: '@karam_fx_intelligence',
-  emailAddress: 'karam@fxintelligence.com',
-  disclaimerText: 'Trading foreign exchange and leveraged instruments involves substantial risk of loss and is not suitable for all investors. The analysis, market commentary, and educational setups provided on this platform are for informational purposes only and do not constitute financial advice.'
+  telegramHandle: '@profitpoint_official',
+  emailAddress: 'contact@profitpoint.pro',
+  disclaimerText: 'Profit Point is a financial market intelligence and education platform. Trading foreign exchange and leveraged instruments involves substantial risk of loss and is not suitable for all investors. Market commentary and setups provided on this platform are for educational and research purposes only.'
 };

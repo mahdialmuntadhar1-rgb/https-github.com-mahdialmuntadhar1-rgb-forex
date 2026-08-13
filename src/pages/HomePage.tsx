@@ -415,17 +415,17 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
           {/* Academy Left */}
           <div className="lg:col-span-6 space-y-4">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+            <div className="flex items-center justify-between border-b border-[#1E3A57] pb-3">
               <div>
-                <h3 className="font-bold text-slate-100 text-lg flex items-center gap-2">
-                  <BookOpen size={18} className="text-purple-400" />
+                <h3 className="font-bold text-white text-lg flex items-center gap-2">
+                  <BookOpen size={18} className="text-[#2163CC]" />
                   {t('academy.title')}
                 </h3>
                 <p className="text-xs text-slate-400">{t('academy.subtitle')}</p>
               </div>
               <button
                 onClick={() => onNavigate('/education')}
-                className="text-xs font-mono text-blue-400 hover:text-blue-300 flex items-center gap-1 cursor-pointer"
+                className="text-xs font-mono text-[#2163CC] hover:underline flex items-center gap-1 cursor-pointer font-bold"
               >
                 <span>{t('common.viewAll')}</span>
                 <ArrowRight size={14} className={direction === 'rtl' ? 'rotate-180' : ''} />
@@ -437,20 +437,20 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 <div
                   key={crs.id}
                   onClick={() => onNavigate(`/education/${crs.id}`)}
-                  className="p-4 rounded-xl bg-slate-900/90 hover:bg-slate-850 border border-slate-800 hover:border-purple-500/40 transition cursor-pointer flex items-center justify-between gap-4"
+                  className="p-4 rounded-xl bg-[#0F2236] hover:bg-[#132A42] border border-[#1E3A57] hover:border-[#2163CC]/50 transition cursor-pointer flex items-center justify-between gap-4"
                 >
                   <div className="space-y-1">
-                    <div className="text-[11px] font-mono font-bold text-purple-400 uppercase">
+                    <div className="text-[11px] font-mono font-bold text-[#2163CC] uppercase">
                       {crs.level} Level
                     </div>
-                    <h5 className="font-bold text-slate-100 text-sm">
+                    <h5 className="font-bold text-white text-sm">
                       {crs.title}
                     </h5>
-                    <p className="text-xs text-slate-400 line-clamp-1">{crs.description}</p>
+                    <p className="text-xs text-slate-300 line-clamp-1">{crs.description}</p>
                   </div>
                   <div className="text-end shrink-0 text-xs font-mono text-slate-400">
                     <div>{crs.lessonsCount} lessons</div>
-                    <div className="text-slate-500">{crs.duration}</div>
+                    <div className="text-slate-400">{crs.duration}</div>
                   </div>
                 </div>
               ))}
@@ -519,31 +519,31 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
 
       {/* 9. ABOUT TRADER & CORE METHODOLOGY */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="bg-gradient-to-tr from-slate-950 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+        <div className="bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-10 shadow-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-start space-y-4">
               <div className="relative">
                 <img
                   src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
                   alt="Karam Al-Rawi"
-                  className="w-36 h-36 rounded-2xl object-cover ring-2 ring-blue-500/40 shadow-xl"
+                  className="w-36 h-36 rounded-2xl object-cover ring-2 ring-[#2163CC] shadow-xl"
                 />
-                <span className="absolute -bottom-2 -end-2 px-2 py-0.5 rounded-md bg-blue-600 text-[10px] font-mono font-bold text-white shadow">
+                <span className="absolute -bottom-2 -end-2 px-2 py-0.5 rounded-md bg-[#2163CC] text-[10px] font-mono font-bold text-white shadow">
                   CMT Level III
                 </span>
               </div>
 
               <div>
-                <h3 className="text-xl font-extrabold text-slate-100">Karam Al-Rawi</h3>
-                <p className="text-xs font-mono text-blue-400 mt-0.5">Senior Macro & FX Strategist</p>
-                <p className="text-xs text-slate-400 mt-2 leading-relaxed max-w-xs">
+                <h3 className="text-xl font-extrabold text-white">Karam Al-Rawi</h3>
+                <p className="text-xs font-mono text-[#2163CC] font-bold mt-0.5">Head Analyst & Founder, Profit Point</p>
+                <p className="text-xs text-slate-300 mt-2 leading-relaxed max-w-xs">
                   12+ years of institutional flow & Gold analysis. Dedicated to discipline, mathematics, and transparency.
                 </p>
               </div>
 
               <button
                 onClick={() => onNavigate('/about')}
-                className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-medium border border-slate-700 transition flex items-center gap-2 cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-[#0B1C2D] hover:bg-[#132A42] text-slate-200 text-xs font-mono font-medium border border-[#1E3A57] transition flex items-center gap-2 cursor-pointer"
               >
                 <span>Read Full Philosophy</span>
                 <ArrowRight size={14} className={direction === 'rtl' ? 'rotate-180' : ''} />
@@ -551,38 +551,38 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
 
             <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1.5">
-                <div className="font-mono text-xs font-bold text-blue-400 flex items-center gap-1.5">
+              <div className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] space-y-1.5">
+                <div className="font-mono text-xs font-bold text-[#2163CC] flex items-center gap-1.5">
                   <ShieldCheck size={15} /> Capital Preservation First
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Defending downside is paramount. Profit is a byproduct of non-negotiable risk-reward discipline.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1.5">
+              <div className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] space-y-1.5">
                 <div className="font-mono text-xs font-bold text-emerald-400 flex items-center gap-1.5">
                   <TrendingUp size={15} /> Macro Context Rules
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Technical levels only produce edge when synchronized with central bank rate paths and liquidity flows.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1.5">
+              <div className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] space-y-1.5">
                 <div className="font-mono text-xs font-bold text-amber-400 flex items-center gap-1.5">
                   <Target size={15} /> Fixed Invalidation
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Every setup is a probabilistic hypothesis. When invalidated, cut quickly with zero emotional attachment.
                 </p>
               </div>
 
-              <div className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 space-y-1.5">
-                <div className="font-mono text-xs font-bold text-purple-400 flex items-center gap-1.5">
+              <div className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] space-y-1.5">
+                <div className="font-mono text-xs font-bold text-[#2163CC] flex items-center gap-1.5">
                   <Award size={15} /> Peak Session Focus
                 </div>
-                <p className="text-xs text-slate-400 leading-relaxed">
+                <p className="text-xs text-slate-300 leading-relaxed">
                   Execute exclusively during London and New York overlaps to avoid low-liquidity whipsaws.
                 </p>
               </div>

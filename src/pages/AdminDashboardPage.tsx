@@ -210,7 +210,7 @@ export const AdminDashboardPage: React.FC<AdminDashboardPageProps> = ({ onNaviga
 
             <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-1">
               <div className="text-slate-500 text-xs font-mono uppercase">VIP Signals Win Rate</div>
-              <div className="text-3xl font-extrabold text-purple-400 font-mono">78.4%</div>
+              <div className="text-3xl font-extrabold text-[#2163CC] font-mono">78.4%</div>
               <div className="text-[11px] text-slate-400">Avg R:R 1:2.4 over 120 setups</div>
             </div>
           </div>

@@ -120,10 +120,10 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({ onNavigate }) => {
                   </a>
                   <span>•</span>
                   <a
-                    href="https://t.me/karam_fx_intelligence"
+                    href="https://t.me/profitpoint_official"
                     target="_blank"
                     rel="noreferrer"
-                    className="hover:text-blue-400 flex items-center gap-1 transition"
+                    className="hover:text-[#2163CC] flex items-center gap-1 transition"
                   >
                     <Send size={13} /> Telegram
                   </a>

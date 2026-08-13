@@ -200,7 +200,7 @@ export const SearchModal: React.FC<SearchModalProps> = ({ isOpen, onClose, onNav
           {/* Matched Academy Courses */}
           {matchedCourses.length > 0 && (
             <div className="pt-4">
-              <div className="text-xs font-mono font-bold text-purple-400 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+              <div className="text-xs font-mono font-bold text-[#2163CC] uppercase tracking-wider mb-2 flex items-center gap-1.5">
                 <BookOpen size={14} /> Academy Lessons ({matchedCourses.length})
               </div>
               <div className="space-y-2">

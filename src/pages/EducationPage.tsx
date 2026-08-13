@@ -1,62 +1,48 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from '../context/LanguageContext';
-import { Course, CourseLesson } from '../types';
 import { contentService } from '../services/contentApi';
+import { Course, CourseLesson } from '../types';
 import { 
   BookOpen, 
   CheckCircle2, 
-  Clock, 
+  Play, 
+  ShieldCheck, 
+  Sparkles, 
+  Target, 
   Award, 
-  PlayCircle, 
-  HelpCircle, 
-  ChevronRight, 
-  ShieldCheck,
-  Zap,
-  Target,
-  Sparkles,
-  ArrowRight
+  ChevronRight,
+  ArrowRight,
+  Clock,
+  HelpCircle
 } from 'lucide-react';
 
-interface EducationPageProps {
-  onNavigate: (path: string) => void;
-  selectedCourseId?: string;
-}
-
-export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, selectedCourseId }) => {
+export const EducationPage: React.FC = () => {
   const { t, direction } = useTranslation();
   const [courses, setCourses] = useState<Course[]>([]);
   const [activeCourse, setActiveCourse] = useState<Course | null>(null);
   const [activeLesson, setActiveLesson] = useState<CourseLesson | null>(null);
-  const [activeTab, setActiveTab] = useState<'courses' | 'glossary' | 'checklist' | 'quiz'>('courses');
   const [completedLessonIds, setCompletedLessonIds] = useState<string[]>([]);
-  
-  // Interactive Quiz State
+  const [activeTab, setActiveTab] = useState<'courses' | 'checklist' | 'glossary' | 'quiz'>('courses');
+
+  // Quiz state
   const [quizIndex, setQuizIndex] = useState(0);
   const [selectedQuizOption, setSelectedQuizOption] = useState<number | null>(null);
-  const [quizScore, setQuizScore] = useState(0);
   const [quizSubmitted, setQuizSubmitted] = useState(false);
+  const [quizScore, setQuizScore] = useState(0);
 
   useEffect(() => {
-    const load = async () => {
-      const all = await contentService.getCourses();
-      setCourses(all);
-      if (selectedCourseId) {
-        const found = all.find(c => c.id === selectedCourseId);
-        if (found) {
-          setActiveCourse(found);
-          if (found.lessons && found.lessons.length > 0) {
-            setActiveLesson(found.lessons[0]);
-          }
-        }
-      } else if (all.length > 0) {
-        setActiveCourse(all[0]);
-        if (all[0].lessons && all[0].lessons.length > 0) {
-          setActiveLesson(all[0].lessons[0]);
+    const loadCourses = async () => {
+      const data = await contentService.getCourses();
+      setCourses(data);
+      if (data.length > 0) {
+        setActiveCourse(data[0]);
+        if (data[0].lessons && data[0].lessons.length > 0) {
+          setActiveLesson(data[0].lessons[0]);
         }
       }
     };
-    load();
-  }, [selectedCourseId]);
+    loadCourses();
+  }, []);
 
   const handleSelectCourse = (course: Course) => {
     setActiveCourse(course);
@@ -66,37 +52,53 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
   };
 
   const handleToggleLessonComplete = (lessonId: string) => {
-    setCompletedLessonIds(prev => 
-      prev.includes(lessonId) ? prev.filter(id => id !== lessonId) : [...prev, lessonId]
-    );
+    if (completedLessonIds.includes(lessonId)) {
+      setCompletedLessonIds(completedLessonIds.filter(id => id !== lessonId));
+    } else {
+      setCompletedLessonIds([...completedLessonIds, lessonId]);
+    }
   };
 
-  // Sample Quiz Data
   const sampleQuiz = [
     {
-      question: 'What is the institutional standard for maximum risk per trade for disciplined traders?',
-      options: ['5% to 10% of total capital', '1% to 2% of total capital', '20% to maximize leverage', '0.05% without stops'],
+      question: 'What is the primary driver of institutional Gold (XAU/USD) trends over medium-to-long horizons?',
+      options: [
+        'Short-term technical candlestick wicks on 5-minute charts',
+        'US Real Yields (10-Year TIPS) and broader central bank reserve diversification',
+        'Crypto market volume and retail sentiment meters',
+        'Social media momentum indicators'
+      ],
       correct: 1,
-      explanation: 'Institutional risk guidelines mandate risking no more than 1% to 2% of net liquidating value per single trade idea to ensure statistical survival over large trade samples.'
+      explanation: 'Gold is fundamentally non-yielding. When US Real Yields fall, the opportunity cost of holding physical gold decreases, driving institutional capital allocation into precious metals.'
     },
     {
-      question: 'Which trading session exhibits the highest liquidity and trading volume in the FX market?',
-      options: ['Asian (Tokyo) Session', 'Sydney Session', 'London / New York Session Overlap', 'Weekend Interbank'],
+      question: 'When trading London / New York market session overlaps, why is liquidity highest?',
+      options: [
+        'Retail day traders are all awake at the same time',
+        'Interbank market-makers in both London and New York are actively quoting bid-ask spreads',
+        'Central banks issue interest rate decisions every hour',
+        'Spreads are fixed by international financial treaties'
+      ],
+      correct: 1,
+      explanation: 'The 12:00 to 16:00 UTC window represents the intersection of the worlds two largest foreign exchange dealing hubs, concentrating global commercial and institutional flow.'
+    },
+    {
+      question: 'What constitutes a disciplined risk management model on any single setup?',
+      options: [
+        'Risking 10% to 20% of account balance to achieve fast compounding',
+        'Never using stop losses because price always returns eventually',
+        'Strictly capping capital at risk between 1.0% to 2.0% with predefined invalidation price levels',
+        'Doubling lot size every time a loss occurs (Martingale)'
+      ],
       correct: 2,
-      explanation: 'The London & New York session overlap (typically 12:00 PM – 4:00 PM UTC) accounts for the largest fraction of global FX and Gold daily turnover.'
-    },
-    {
-      question: 'In Gold (XAU/USD) analysis, what is the typical historical correlation with US 10-Year Real Yields (TIPS)?',
-      options: ['Strong Inverse (Negative) correlation', 'Strong Direct (Positive) correlation', 'No relationship', 'Random correlation'],
-      correct: 0,
-      explanation: 'Because physical Gold yields zero cash dividends, its opportunity cost falls when real yields decline, historically giving Gold a strong inverse relationship with TIPS yields.'
+      explanation: 'Institutional longevity is rooted in asymmetric mathematics. Risking 1-2% prevents catastrophic drawdowns and ensures survivability across hundreds of trade iterations.'
     }
   ];
 
   const glossaryTerms = [
-    { term: 'Pip (Price Interest Point)', definition: 'The standardized unit of measure to express the change in value between two currencies. For most pairs, 1 pip = 0.0001.' },
-    { term: 'Liquidity Pool', definition: 'Clusters of accumulated stop-loss and pending limit orders situated above swing highs and beneath swing lows targeted by institutional market makers.' },
-    { term: 'Risk-to-Reward (R:R)', definition: 'The ratio of prospective profit compared to the defined stop-loss risk. Institutional minimum standard is generally 1:2 or better.' },
+    { term: 'Liquidity Pool', definition: 'Clusters of accumulated stop-loss and pending limit orders above key highs and below key swing lows where institutional orders find matching volume.' },
+    { term: 'Fair Value Gap (FVG)', definition: 'A 3-candle price imbalance created by aggressive one-sided institutional buying or selling where one price tier was skipped.' },
+    { term: 'COT Report (Commitments of Traders)', definition: 'Weekly regulatory filing by the CFTC disclosing aggregate long/short positioning of commercial vs. non-commercial institutional speculators.' },
     { term: 'Economic Calendar Consensus', definition: 'The aggregated median forecast among institutional economists for upcoming macroeconomic metrics (e.g. CPI, NFP).' },
     { term: 'Real Yields (TIPS)', definition: 'Nominal bond interest rates minus expected inflation rates. A primary fundamental driver of physical gold demand and valuation.' },
     { term: 'Order Block (OB)', definition: 'A specific institutional price footprint created by large block transactions preceding significant market momentum.' }
@@ -105,15 +107,15 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* Header Banner */}
-      <div className="bg-gradient-to-r from-purple-950/30 via-slate-900 to-slate-950 border border-purple-500/20 rounded-3xl p-6 sm:p-10 space-y-4">
-        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-mono">
-          <BookOpen size={14} /> Vanguard Trading Academy
+      <div className="bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-10 space-y-4 shadow-xl">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2163CC]/15 border border-[#2163CC]/30 text-[#2163CC] text-xs font-mono font-bold">
+          <BookOpen size={14} /> Profit Point Academy
         </div>
-        <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-100 tracking-tight">
+        <h1 className="text-2xl sm:text-4xl font-extrabold text-white tracking-tight">
           {t('academy.title')} & Strategy Mastery
         </h1>
         <p className="text-sm sm:text-base text-slate-300 max-w-2xl leading-relaxed">
-          Structured curriculum covering macro drivers, price delivery algorithms, multi-timeframe chart architecture, and mathematical risk management.
+          Structured curriculum covering macro drivers, price delivery mechanics, multi-timeframe chart architecture, and mathematical risk management.
         </p>
 
         {/* Tab Navigation */}
@@ -122,8 +124,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
             onClick={() => setActiveTab('courses')}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition cursor-pointer flex items-center gap-2 ${
               activeTab === 'courses'
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20 font-bold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-[#2163CC] text-white shadow-md shadow-[#2163CC]/20 font-bold'
+                : 'bg-[#0B1C2D] text-slate-300 hover:text-white border border-[#1E3A57]'
             }`}
           >
             <BookOpen size={14} /> Course Curriculum
@@ -132,8 +134,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
             onClick={() => setActiveTab('checklist')}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition cursor-pointer flex items-center gap-2 ${
               activeTab === 'checklist'
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20 font-bold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-[#2163CC] text-white shadow-md shadow-[#2163CC]/20 font-bold'
+                : 'bg-[#0B1C2D] text-slate-300 hover:text-white border border-[#1E3A57]'
             }`}
           >
             <ShieldCheck size={14} /> Pre-Trade Checklist
@@ -142,8 +144,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
             onClick={() => setActiveTab('glossary')}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition cursor-pointer flex items-center gap-2 ${
               activeTab === 'glossary'
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20 font-bold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-[#2163CC] text-white shadow-md shadow-[#2163CC]/20 font-bold'
+                : 'bg-[#0B1C2D] text-slate-300 hover:text-white border border-[#1E3A57]'
             }`}
           >
             <Sparkles size={14} /> Institutional Glossary
@@ -152,8 +154,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
             onClick={() => setActiveTab('quiz')}
             className={`px-4 py-2 rounded-xl text-xs font-mono font-medium transition cursor-pointer flex items-center gap-2 ${
               activeTab === 'quiz'
-                ? 'bg-purple-600 text-white shadow-lg shadow-purple-500/20 font-bold'
-                : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                ? 'bg-[#2163CC] text-white shadow-md shadow-[#2163CC]/20 font-bold'
+                : 'bg-[#0B1C2D] text-slate-300 hover:text-white border border-[#1E3A57]'
             }`}
           >
             <Award size={14} /> Knowledge Assessment
@@ -176,17 +178,17 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                   <button
                     key={crs.id}
                     onClick={() => handleSelectCourse(crs)}
-                    className={`w-full p-3.5 rounded-xl border text-left transition cursor-pointer flex items-center justify-between ${
+                    className={`w-full p-3.5 rounded-xl border text-start transition cursor-pointer flex items-center justify-between ${
                       activeCourse.id === crs.id
-                        ? 'bg-purple-950/30 border-purple-500/50 text-white'
-                        : 'bg-slate-900/80 border-slate-800 text-slate-300 hover:bg-slate-850'
+                        ? 'bg-[#132A42] border-[#2163CC] text-white shadow-sm'
+                        : 'bg-[#0F2236] border-[#1E3A57] text-slate-300 hover:bg-[#132A42]'
                     }`}
                   >
                     <div>
-                      <div className="text-[10px] font-mono text-purple-400 font-bold uppercase">
+                      <div className="text-[10px] font-mono text-[#2163CC] font-bold uppercase">
                         {crs.level}
                       </div>
-                      <div className="font-bold text-sm text-slate-100">{crs.title}</div>
+                      <div className="font-bold text-sm text-white">{crs.title}</div>
                     </div>
                     <span className="text-xs font-mono text-slate-400">{crs.lessonsCount} lessons</span>
                   </button>
@@ -195,10 +197,10 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
             </div>
 
             {/* Lessons Navigation for Active Course */}
-            <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-4 space-y-3">
-              <div className="flex items-center justify-between border-b border-slate-800 pb-2">
-                <h4 className="font-bold text-slate-100 text-sm">{activeCourse.title}</h4>
-                <span className="text-xs font-mono text-purple-400">
+            <div className="bg-[#0F2236] border border-[#1E3A57] rounded-2xl p-4 space-y-3">
+              <div className="flex items-center justify-between border-b border-[#1E3A57] pb-2">
+                <h4 className="font-bold text-white text-sm">{activeCourse.title}</h4>
+                <span className="text-xs font-mono text-[#2163CC] font-bold">
                   {completedLessonIds.length} completed
                 </span>
               </div>
@@ -212,10 +214,10 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                     <button
                       key={lesson.id}
                       onClick={() => setActiveLesson(lesson)}
-                      className={`w-full p-2.5 rounded-lg text-left text-xs transition cursor-pointer flex items-center justify-between ${
+                      className={`w-full p-2.5 rounded-lg text-start text-xs transition cursor-pointer flex items-center justify-between ${
                         isCurrent
-                          ? 'bg-purple-600 text-white font-semibold'
-                          : 'text-slate-300 hover:bg-slate-800/80'
+                          ? 'bg-[#2163CC] text-white font-semibold'
+                          : 'text-slate-300 hover:bg-[#132A42]'
                       }`}
                     >
                       <div className="flex items-center gap-2">
@@ -238,13 +240,13 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
           {/* Right Column: Lesson Viewer */}
           <div className="lg:col-span-8 space-y-6">
             {activeLesson ? (
-              <div className="bg-slate-900/90 border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
-                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+              <div className="bg-[#0F2236] border border-[#1E3A57] rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+                <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#1E3A57] pb-4">
                   <div>
-                    <div className="text-xs font-mono text-purple-400 font-bold uppercase mb-1">
+                    <div className="text-xs font-mono text-[#2163CC] font-bold uppercase mb-1">
                       {activeCourse.level} Track • Module {activeLesson.order || 1}
                     </div>
-                    <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-100">
+                    <h2 className="text-2xl sm:text-3xl font-extrabold text-white">
                       {activeLesson.title}
                     </h2>
                   </div>
@@ -254,7 +256,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                     className={`px-4 py-2 rounded-xl text-xs font-mono font-bold transition flex items-center gap-2 cursor-pointer ${
                       completedLessonIds.includes(activeLesson.id)
                         ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'
-                        : 'bg-purple-600 hover:bg-purple-500 text-white shadow-md'
+                        : 'bg-[#2163CC] hover:bg-[#1855B5] text-white shadow-md'
                     }`}
                   >
                     <CheckCircle2 size={15} />
@@ -271,14 +273,14 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
 
                 {/* Key Takeaways */}
                 {activeLesson.keyTakeaways && (
-                  <div className="p-5 rounded-2xl bg-slate-950/60 border border-purple-500/30 space-y-3">
-                    <h4 className="font-mono font-bold text-xs text-purple-400 uppercase tracking-wider flex items-center gap-2">
+                  <div className="p-5 rounded-2xl bg-[#0B1C2D] border border-[#1E3A57] space-y-3">
+                    <h4 className="font-mono font-bold text-xs text-[#2163CC] uppercase tracking-wider flex items-center gap-2">
                       <Target size={15} /> Key Strategic Takeaways
                     </h4>
                     <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
                       {activeLesson.keyTakeaways.map((takeaway, i) => (
                         <li key={i} className="flex items-start gap-2.5">
-                          <CheckCircle2 size={15} className="text-purple-400 shrink-0 mt-0.5" />
+                          <CheckCircle2 size={15} className="text-[#2163CC] shrink-0 mt-0.5" />
                           <span>{takeaway}</span>
                         </li>
                       ))}
@@ -297,9 +299,9 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
 
       {/* 2. PRE-TRADE CHECKLIST VIEW */}
       {activeTab === 'checklist' && (
-        <div className="max-w-4xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
+        <div className="max-w-4xl mx-auto bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-8">
           <div className="space-y-2">
-            <h2 className="text-2xl font-extrabold text-slate-100 font-mono">
+            <h2 className="text-2xl font-extrabold text-white font-mono">
               Institutional Pre-Execution Protocol
             </h2>
             <p className="text-sm text-slate-400 leading-relaxed">
@@ -316,14 +318,14 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
               { title: 'Mathematical Risk Assessment', desc: 'Is total risk capped at strictly 1% - 2% of equity with an explicit stop-loss orders in place?' },
               { title: 'Risk-to-Reward Verification', desc: 'Does the primary target offer at least 1:2 risk-to-reward to the first structural barrier?' }
             ].map((item, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-slate-950/60 border border-slate-800 flex items-start gap-3">
+              <div key={idx} className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] flex items-start gap-3">
                 <input
                   type="checkbox"
                   id={`chk-${idx}`}
-                  className="w-5 h-5 rounded-md text-purple-600 bg-slate-900 border-slate-700 mt-0.5 cursor-pointer"
+                  className="w-5 h-5 rounded-md text-[#2163CC] bg-[#0B1C2D] border-[#1E3A57] mt-0.5 cursor-pointer accent-[#2163CC]"
                 />
                 <label htmlFor={`chk-${idx}`} className="cursor-pointer space-y-0.5">
-                  <div className="font-bold text-slate-100 text-sm">{item.title}</div>
+                  <div className="font-bold text-white text-sm">{item.title}</div>
                   <div className="text-xs text-slate-400">{item.desc}</div>
                 </label>
               </div>
@@ -335,8 +337,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
       {/* 3. GLOSSARY VIEW */}
       {activeTab === 'glossary' && (
         <div className="space-y-6">
-          <div className="border-b border-slate-800 pb-4">
-            <h2 className="text-2xl font-extrabold text-slate-100 font-mono">
+          <div className="border-b border-[#1E3A57] pb-4">
+            <h2 className="text-2xl font-extrabold text-white font-mono">
               Institutional FX & Macro Glossary
             </h2>
             <p className="text-xs text-slate-400 mt-1">
@@ -346,8 +348,8 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {glossaryTerms.map((g, idx) => (
-              <div key={idx} className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-2">
-                <h4 className="font-mono font-bold text-purple-400 text-sm">{g.term}</h4>
+              <div key={idx} className="p-5 rounded-2xl bg-[#0F2236] border border-[#1E3A57] space-y-2">
+                <h4 className="font-mono font-bold text-[#2163CC] text-sm">{g.term}</h4>
                 <p className="text-xs text-slate-300 leading-relaxed">{g.definition}</p>
               </div>
             ))}
@@ -357,15 +359,15 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
 
       {/* 4. QUIZ VIEW */}
       {activeTab === 'quiz' && (
-        <div className="max-w-3xl mx-auto bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-4">
-            <span className="text-xs font-mono text-purple-400 font-bold uppercase">
+        <div className="max-w-3xl mx-auto bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-10 shadow-2xl space-y-6">
+          <div className="flex items-center justify-between border-b border-[#1E3A57] pb-4">
+            <span className="text-xs font-mono text-[#2163CC] font-bold uppercase">
               Question {quizIndex + 1} of {sampleQuiz.length}
             </span>
             <span className="text-xs font-mono text-slate-400">Score: {quizScore}</span>
           </div>
 
-          <h3 className="text-lg sm:text-xl font-bold text-slate-100 leading-snug">
+          <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
             {sampleQuiz[quizIndex].question}
           </h3>
 
@@ -374,7 +376,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
               const isSelected = selectedQuizOption === optIdx;
               const isCorrect = sampleQuiz[quizIndex].correct === optIdx;
 
-              let btnStyle = 'bg-slate-950/60 border-slate-800 text-slate-300 hover:bg-slate-850';
+              let btnStyle = 'bg-[#0B1C2D] border-[#1E3A57] text-slate-300 hover:bg-[#132A42]';
               if (quizSubmitted) {
                 if (isCorrect) {
                   btnStyle = 'bg-emerald-950/40 border-emerald-500 text-emerald-300 font-bold';
@@ -382,7 +384,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                   btnStyle = 'bg-rose-950/40 border-rose-500 text-rose-300';
                 }
               } else if (isSelected) {
-                btnStyle = 'bg-purple-950/40 border-purple-500 text-purple-300 font-bold';
+                btnStyle = 'bg-[#2163CC]/20 border-[#2163CC] text-white font-bold';
               }
 
               return (
@@ -390,7 +392,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                   key={optIdx}
                   disabled={quizSubmitted}
                   onClick={() => setSelectedQuizOption(optIdx)}
-                  className={`w-full p-4 rounded-xl border text-left text-xs sm:text-sm transition cursor-pointer flex items-center justify-between ${btnStyle}`}
+                  className={`w-full p-4 rounded-xl border text-start text-xs sm:text-sm transition cursor-pointer flex items-center justify-between ${btnStyle}`}
                 >
                   <span>{opt}</span>
                   {quizSubmitted && isCorrect && <CheckCircle2 size={16} className="text-emerald-400" />}
@@ -400,13 +402,13 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
           </div>
 
           {quizSubmitted && (
-            <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 text-xs text-slate-300 leading-relaxed space-y-1">
-              <strong className="text-purple-400 block font-mono">Explanation:</strong>
+            <div className="p-4 rounded-xl bg-[#0B1C2D] border border-[#1E3A57] text-xs text-slate-300 leading-relaxed space-y-1">
+              <strong className="text-[#2163CC] block font-mono">Explanation:</strong>
               {sampleQuiz[quizIndex].explanation}
             </div>
           )}
 
-          <div className="flex items-center justify-end pt-4 border-t border-slate-800">
+          <div className="flex items-center justify-end pt-4 border-t border-[#1E3A57]">
             {!quizSubmitted ? (
               <button
                 disabled={selectedQuizOption === null}
@@ -418,7 +420,7 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                     }
                   }
                 }}
-                className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 disabled:opacity-50 text-white font-mono text-xs font-bold transition cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#2163CC] hover:bg-[#1855B5] disabled:opacity-50 text-white font-mono text-xs font-bold transition cursor-pointer"
               >
                 Submit Answer
               </button>
@@ -430,14 +432,13 @@ export const EducationPage: React.FC<EducationPageProps> = ({ onNavigate, select
                     setSelectedQuizOption(null);
                     setQuizSubmitted(false);
                   } else {
-                    alert(`Assessment Complete! Final Score: ${quizScore + (selectedQuizOption === sampleQuiz[quizIndex].correct ? 0 : 0)} / ${sampleQuiz.length}`);
                     setQuizIndex(0);
                     setSelectedQuizOption(null);
                     setQuizSubmitted(false);
                     setQuizScore(0);
                   }
                 }}
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-mono text-xs font-bold transition cursor-pointer"
+                className="px-5 py-2.5 rounded-xl bg-[#2163CC] hover:bg-[#1855B5] text-white font-mono text-xs font-bold transition cursor-pointer"
               >
                 {quizIndex < sampleQuiz.length - 1 ? 'Next Question →' : 'Restart Quiz'}
               </button>

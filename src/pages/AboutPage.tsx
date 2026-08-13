@@ -52,32 +52,32 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
       {/* Hero Profile Banner */}
-      <div className="bg-gradient-to-r from-blue-950/40 via-slate-900 to-slate-950 border border-slate-800 rounded-3xl p-6 sm:p-10 shadow-2xl">
+      <div className="bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-10 shadow-2xl">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-4 flex flex-col items-center text-center space-y-4">
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
                 alt="Karam Al-Rawi"
-                className="w-48 h-48 rounded-3xl object-cover ring-4 ring-blue-500/30 shadow-2xl"
+                className="w-48 h-48 rounded-3xl object-cover ring-4 ring-[#2163CC]/40 shadow-2xl"
               />
-              <span className="absolute -bottom-2 bg-blue-600 text-white font-mono text-xs font-bold px-3 py-1 rounded-full shadow-lg">
+              <span className="absolute -bottom-2 bg-[#2163CC] text-white font-mono text-xs font-bold px-3 py-1 rounded-full shadow-lg">
                 12+ Years Pro
               </span>
             </div>
 
             <div>
-              <h1 className="text-2xl font-extrabold text-slate-100">Karam Al-Rawi</h1>
-              <p className="text-sm font-mono text-blue-400 mt-0.5">Senior Macro & Gold Strategist</p>
+              <h1 className="text-2xl font-extrabold text-white">Karam Al-Rawi</h1>
+              <p className="text-sm font-mono text-[#2163CC] font-bold mt-0.5">Head Analyst & Founder, Profit Point</p>
             </div>
 
             {/* Social Channels */}
             <div className="flex items-center gap-3">
               <a
-                href="https://t.me/karam_fx_intelligence"
+                href="https://t.me/profitpoint_official"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-blue-600 hover:text-white border border-slate-800 transition text-slate-300 shadow"
+                className="p-2.5 rounded-xl bg-[#0B1C2D] hover:bg-[#2163CC] hover:text-white border border-[#1E3A57] transition text-slate-300 shadow"
                 title="Telegram"
               >
                 <Send size={18} />
@@ -86,25 +86,25 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
                 href="https://wa.me/447700900077"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-emerald-600 hover:text-white border border-slate-800 transition text-slate-300 shadow"
+                className="p-2.5 rounded-xl bg-[#0B1C2D] hover:bg-emerald-600 hover:text-white border border-[#1E3A57] transition text-slate-300 shadow"
                 title="WhatsApp"
               >
                 <MessageSquare size={18} />
               </a>
               <a
-                href="https://youtube.com/@karam_fx"
+                href="https://youtube.com/@profitpoint_fx"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-rose-600 hover:text-white border border-slate-800 transition text-slate-300 shadow"
+                className="p-2.5 rounded-xl bg-[#0B1C2D] hover:bg-rose-600 hover:text-white border border-[#1E3A57] transition text-slate-300 shadow"
                 title="YouTube"
               >
                 <Youtube size={18} />
               </a>
               <a
-                href="https://x.com/karam_fx"
+                href="https://x.com/profitpoint_fx"
                 target="_blank"
                 rel="noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-700 hover:text-white border border-slate-800 transition text-slate-300 shadow"
+                className="p-2.5 rounded-xl bg-[#0B1C2D] hover:bg-[#132A42] hover:text-white border border-[#1E3A57] transition text-slate-300 shadow"
                 title="X"
               >
                 <Twitter size={18} />
@@ -114,7 +114,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate }) => {
 
           {/* Bio statement */}
           <div className="lg:col-span-8 space-y-5">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-mono">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#2163CC]/15 border border-[#2163CC]/30 text-[#2163CC] text-xs font-mono font-bold">
               <ShieldCheck size={14} /> Professional Background & Creed
             </div>
 

@@ -2,43 +2,40 @@
 
 :root {
   /* Official Profit Point Brand Tokens */
-  --profit-blue: #2163CC;
-  --profit-blue-hover: #1A52AB;
-  --profit-blue-light: rgba(33, 99, 204, 0.12);
-  --profit-navy: #0B1C2D;
-  --profit-navy-surface: #0F2236;
-  --profit-navy-card: #132A42;
-  --profit-navy-border: #1E3A57;
-  --profit-charcoal: #333333;
-  --profit-charcoal-muted: #555555;
-  --profit-white: #FFFFFF;
+  --profit-point-blue: #2163CC;
+  --profit-point-blue-hover: #1855B5;
+  --profit-point-navy: #0B1C2D;
+  --profit-point-charcoal: #333333;
+  --profit-point-white: #FFFFFF;
 
   /* Semantic Design Tokens */
-  --color-primary: #2163CC;
-  --color-primary-hover: #1A52AB;
-  --color-background: #0B1C2D;
-  --color-surface: #0F2236;
-  --color-surface-hover: #132A42;
-  --color-text: #FFFFFF;
-  --color-text-secondary: #94A3B8;
-  --color-muted: #64748B;
-  --color-border: #1E3A57;
+  --primary: #2163CC;
+  --primary-hover: #1855B5;
+  --dark: #0B1C2D;
+  --dark-surface: #0F2236;
+  --dark-card: #132A42;
+  --dark-border: #1E3A57;
+  --text: #333333;
+  --text-light: #FFFFFF;
+  --text-muted: #94A3B8;
+  --background: #0B1C2D;
 
-  /* Financial Indicators (strictly for market movements, not brand) */
-  --color-success: #10B981;
-  --color-danger: #EF4444;
-  --color-warning: #F59E0B;
+  /* Market movement indicators (Financial data only) */
+  --market-up: #10B981;
+  --market-down: #EF4444;
 }
 
 @theme {
   --color-profit-blue: #2163CC;
-  --color-profit-blue-hover: #1A52AB;
+  --color-profit-blue-hover: #1855B5;
   --color-profit-navy: #0B1C2D;
   --color-profit-navy-surface: #0F2236;
   --color-profit-navy-card: #132A42;
   --color-profit-navy-border: #1E3A57;
   --color-profit-charcoal: #333333;
   --color-profit-white: #FFFFFF;
+  --color-primary: #2163CC;
+  --color-primary-hover: #1855B5;
 }
 
 body {
@@ -70,13 +67,16 @@ html[dir="rtl"] body {
   display: inline-block;
 }
 
-/* Explicit protection: Profit Point Logo must NEVER be mirrored or deformed in RTL */
+/* STRICT RULE: Profit Point Logo must NEVER be mirrored or scaled inversely in RTL */
 .profit-point-logo,
 [dir="rtl"] .profit-point-logo,
-svg.brand-mark,
-[dir="rtl"] svg.brand-mark {
+img[alt*="Profit Point"],
+[dir="rtl"] img[alt*="Profit Point"],
+img[src*="/brand/"],
+[dir="rtl"] img[src*="/brand/"] {
   direction: ltr !important;
   transform: none !important;
+  -webkit-transform: none !important;
   unicode-bidi: normal !important;
 }
 
@@ -91,7 +91,7 @@ svg.brand-mark,
   transform: scaleX(-1);
 }
 
-/* Custom Scrollbar styled for Deep Navy Terminal */
+/* Custom Scrollbar styled for Deep Navy */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;

@@ -79,30 +79,30 @@ export const UserDashboardPage: React.FC<UserDashboardPageProps> = ({ onNavigate
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
       {/* User Header */}
-      <div className="bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+      <div className="bg-[#0F2236] border border-[#1E3A57] rounded-3xl p-6 sm:p-8 shadow-xl flex flex-col sm:flex-row sm:items-center justify-between gap-6">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-blue-600 to-indigo-600 flex items-center justify-center font-mono font-extrabold text-white text-xl shadow-lg">
+          <div className="w-14 h-14 rounded-2xl bg-[#2163CC] flex items-center justify-center font-mono font-extrabold text-white text-xl shadow-md shadow-[#2163CC]/20">
             DR
           </div>
           <div>
             <div className="flex items-center gap-2">
-              <h1 className="text-xl sm:text-2xl font-extrabold text-slate-100">
+              <h1 className="text-xl sm:text-2xl font-extrabold text-white">
                 Demo Trader Workspace
               </h1>
-              <span className="px-2 py-0.5 rounded bg-blue-500/10 text-blue-400 font-mono text-[10px] font-bold border border-blue-500/20">
+              <span className="px-2 py-0.5 rounded bg-[#2163CC]/20 text-[#2163CC] font-mono text-[10px] font-bold border border-[#2163CC]/30">
                 VIP ACTIVE
               </span>
             </div>
-            <p className="text-xs font-mono text-slate-400 mt-0.5">trader.demo@karam-fx.com • Tier 1 Interbank Feed</p>
+            <p className="text-xs font-mono text-slate-400 mt-0.5">trader.demo@profitpoint.pro • Tier 1 Interbank Feed</p>
           </div>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-2 bg-slate-950/80 p-1 rounded-2xl border border-slate-800">
+        <div className="flex items-center gap-2 bg-[#0B1C2D] p-1 rounded-2xl border border-[#1E3A57]">
           <button
             onClick={() => setActiveTab('watchlist')}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'watchlist' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+              activeTab === 'watchlist' ? 'bg-[#2163CC] text-white font-bold' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Star size={13} /> Watchlist ({watchlistSymbols.length})
@@ -110,7 +110,7 @@ export const UserDashboardPage: React.FC<UserDashboardPageProps> = ({ onNavigate
           <button
             onClick={() => setActiveTab('alerts')}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'alerts' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+              activeTab === 'alerts' ? 'bg-[#2163CC] text-white font-bold' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Bell size={13} /> Alerts ({alerts.length})
@@ -118,7 +118,7 @@ export const UserDashboardPage: React.FC<UserDashboardPageProps> = ({ onNavigate
           <button
             onClick={() => setActiveTab('bookmarks')}
             className={`px-3 py-1.5 rounded-xl text-xs font-mono transition cursor-pointer flex items-center gap-1.5 ${
-              activeTab === 'bookmarks' ? 'bg-blue-600 text-white font-bold' : 'text-slate-400 hover:text-white'
+              activeTab === 'bookmarks' ? 'bg-[#2163CC] text-white font-bold' : 'text-slate-400 hover:text-white'
             }`}
           >
             <Bookmark size={13} /> Saved ({savedAnalyses.length})

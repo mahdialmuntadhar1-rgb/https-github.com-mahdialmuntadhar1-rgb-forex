@@ -148,7 +148,7 @@ export const AssetDetailPage: React.FC<AssetDetailPageProps> = ({ assetId, onNav
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           {/* Symbol & Name */}
           <div className="flex items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-gradient-to-tr from-blue-700 to-cyan-500 flex items-center justify-center font-mono font-extrabold text-white text-lg shadow-lg">
+            <div className="w-12 h-12 rounded-xl bg-[#2163CC] flex items-center justify-center font-mono font-extrabold text-white text-lg shadow-md shadow-[#2163CC]/20">
               {asset.symbol.split('/')[0] || asset.symbol.slice(0, 3)}
             </div>
             <div>
