@@ -1,0 +1,6 @@
+{
+  "name": "Profit Point — Market Intelligence & Academy",
+  "description": "Official Profit Point platform featuring institutional Forex & Gold analytics, macroeconomic research, proprietary trading setups, comprehensive academy, and multi-language LTR/RTL support.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
